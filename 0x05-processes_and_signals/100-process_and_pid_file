@@ -11,7 +11,7 @@ file=/var/run/holbertonscript.pid
 echo $$ >> $file
 
 trap 'echo Y U no love me?!' SIGINT
-trap 'echo I hate the kill command; exit; rm $file' SIGTERM
+trap 'echo I hate the kill command;rm "$file"; exit' SIGTERM
 trap 'rm "$file"; exit' SIGQUIT
 
 while :
