@@ -57,7 +57,7 @@ frontend www-https
 
 backend www-backend
          balance roundrobin
-         server 1271-web-01 34.74.118.58:80 check
+         server 1271-web-01 104.196.221.76:80 check
          server 1271-web-02 54.234.179.10:80 check
 
 backend letsencrypt-backend
