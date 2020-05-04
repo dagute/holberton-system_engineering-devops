@@ -2,15 +2,19 @@
 """Export to CSV"""
 import requests
 from sys import argv
-import csv
+from csv import DictWriter, QUOTE_ALL
 
 
-def export_csv(data, path):
+def export_csv(emp_id):
     """ export data in the CSV format"""
-    with open(path, "w", newline="") as f:
-        writer = csv.writer(f, delimiter=',', quoting=csv.QUOTE_ALL)
-        for x in data:
-            writer.writerow(x)
+    output = ["userId", "username", "completed", "title"]
+    with open("{}.csv".format(emp_id), 'w') as f:
+        writer = DictWriter(f, fieldnames=output, quoting=QUOTE_ALL)
+        for arg in to_do:
+            if arg["userId"] == emp_id:
+                del arg["id"]
+                arg["username"] = name
+                writer.writerow(arg)
 
 if __name__ == "__main__":
     """returns information about his/her TODO list progress"""
@@ -28,16 +32,4 @@ if __name__ == "__main__":
         if user["id"] == int(argv[1]):
             name = user["username"]
 
-    for arg in to_do:
-        if arg["userId"] == int(argv[1]):
-            if arg["completed"] is True:
-                completed = 'True'
-            else:
-                completed = 'False'
-            row = '{},{},{},{}'.format(argv[1], name,
-                                       completed,
-                                       arg["title"])
-            tasks.append(row.split(","))
-
-path = str(argv[1]) + ".csv"
-export_csv(tasks, path)
+    export_csv(int(argv[1]))
