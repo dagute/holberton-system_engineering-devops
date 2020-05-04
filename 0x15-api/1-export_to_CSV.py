@@ -9,8 +9,8 @@ def export_csv(data, path):
     """ export data in the CSV format"""
     with open(path, "w", newline="") as f:
         writer = csv.writer(f, delimiter=',', quoting=csv.QUOTE_ALL)
-        for arg in data:
-            writer.writerow(arg)
+        for x in data:
+            writer.writerow(x)
 
 if __name__ == "__main__":
     """returns information about his/her TODO list progress"""
@@ -22,13 +22,11 @@ if __name__ == "__main__":
     name = ""
     completed = ""
     emp_id = ""
-    total_t = 0
-    finish_t = 0
     tasks = []
 
     for user in users:
         if user["id"] == int(argv[1]):
-            name = user["name"]
+            name = user["username"]
 
     for arg in to_do:
         if arg["userId"] == int(argv[1]):
