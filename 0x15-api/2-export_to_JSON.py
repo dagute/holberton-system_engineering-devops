@@ -4,7 +4,8 @@ import requests
 from sys import argv
 import json
 
-if __name__ == "__main__":
+
+def export_to_json(emp_id):
     """export to JSON"""
     my_list = []
     employee = {}
@@ -19,13 +20,16 @@ if __name__ == "__main__":
 
     for arg in tasks:
         my_dict = {}
-        my_dict["completed"] = arg["completed"]
         my_dict["task"] = arg["title"]
+        my_dict["completed"] = arg["completed"]
         my_dict["username"] = username
         my_list.append(my_dict)
 
     employee[argv[1]] = my_list
     file = argv[1] + ".json"
-    with open(file, 'w', encoding="utf-8") as f:
+    with open(file, 'w') as f:
         d = json.dumps(employee)
         f.write(d)
+
+if __name__ == '__main__':
+    export_to_json(argv[1])
