@@ -12,10 +12,10 @@ def top_ten(subreddit):
     user_agent = {'User-Agent': 'dagute'}
     req = requests.get(url, headers=user_agent).json()
 
-    my_list = req.get('data').get('children')
-    for x, listed in enumerate(my_list[:10], 1):
-        print(listed.get('data').get('title', None))
-
     if req.get('error') == 404:
         print('None')
         return
+
+    my_list = req.get('data').get('children')
+    for x, listed in enumerate(my_list[:10], 1):
+        print(listed.get('data').get('title', None))
