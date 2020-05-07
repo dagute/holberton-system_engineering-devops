@@ -12,6 +12,6 @@ def number_of_subscribers(subreddit):
     User_Agent = {'User-agent': 'dagute'}
     req = requests.get(url, headers=User_Agent).json().get('data')
 
-    if req:
-        return req.get('subscribers')
-    return 0
+    if req is None :
+        return 0 
+    return req.get('subscribers')
