@@ -16,8 +16,8 @@ def search(subreddit, word):
 
     if req.get('error') == 404:
         return (None)
-    my_list = req.get('data').get('children')
-    for arg in my_list:
+    children = req.get('data').get('children')
+    for arg in children:
         title = arg.get('data').get('title').lower().split(' ')
         for key, value in word.items():
             if key != 'after':
