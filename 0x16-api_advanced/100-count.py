@@ -14,6 +14,8 @@ def search(subreddit, word):
 
     req = requests.get(url, headers=user_agent).json()
 
+    if req.get('error') == 404:
+        return (None)
     my_list = req.get('data').get('children')
     for arg in my_list:
         title = arg.get('data').get('title').lower().split(' ')
